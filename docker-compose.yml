@@ -1,0 +1,17 @@
+mysql:
+  build: './mysql'
+  environment:
+    - MYSQL_ROOT_PASSWORD=rootroot
+workbench:
+  build: './workbench'
+  links:
+    - mysql
+  ports:
+    - "8080:8080"
+kieserver:
+  build: './kieserver'
+  links:
+    - workbench:kie_wb
+    - mysql
+  ports:
+    - "8081:8080"
